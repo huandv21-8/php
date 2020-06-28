@@ -8,6 +8,7 @@ $sql = "SELECT * FROM `product`";
 $productList = select($sql);
 
 foreach ($productList as $product) {
+
   $s .= '<div class="col-lg-4 col-md-6 mb-4">
  <div class="card h-100">
    <a href="#"><img class="card-img-top" src="' . $product['link'] . '" alt=""></a>
@@ -19,14 +20,13 @@ foreach ($productList as $product) {
      <p class="card-text" name = "title1"> Tặng 2 suất mua Đồng hồ thời trang giảm 40% (không áp dụng thêm khuyến mãi khác) và </p>
    </div>
    <div class="card-footer">
-     <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-      <a href="#" class="btn btn-danger"  onclick="them(\' '. $product['link']  .'\',\'' . $product['title'] .'\',\'' . $product['price'].'\',\'' . $product['percent'].'\')">Add to Card</a>
+     <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small> 
+       <a id="detail" class="btn btn-danger"  onclick=\'window.open("productdetails.php?id='. $product['id'].'","_self")\' herf="cart.php">Add to Card</a>
      <p class="btn btn-success" id="percent">Tra gop :  ' . $product['percent'] . '%</p>
      <span class="btn btn-primary">Moi</span>
    </div>
  </div>
 </div>';
-
 }
 
 ?>
@@ -39,8 +39,9 @@ foreach ($productList as $product) {
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-  <title>Shop Homepage - Start Bootstrap Template</title>
+  <title>List of product</title>
   <script src="https://code.jquery.com/jquery-latest.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 
@@ -100,7 +101,6 @@ foreach ($productList as $product) {
         </ul>
       </div>
     </div>
-    <input type="button" id="abc" class="abc" style="color: white;" class="btn">
   </nav>
 
   <!-- Page Content -->
@@ -168,7 +168,7 @@ foreach ($productList as $product) {
   <!-- Footer -->
   <footer class="py-5 bg-dark">
     <div class="container">
-      <p class="m-0 text-center text-white">Copyright &copy; Your Nong</p>
+      <p class="m-0 text-center text-white">ban dien thoai</p>
     </div>
     <!-- /.container -->
   </footer>
@@ -177,34 +177,39 @@ foreach ($productList as $product) {
   <!-- <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script> -->
 
-  <script type="text/javascript">
-     var a = 0;
-     $('.abc').val(a);
-    //  var title;
-    //  var price;
-    // var  percent;
-   function them(link ,title, price,percent){
-       a++;
-       $('.abc').val(a);
-      //  title = $('.title').text();
-      //  price = $('.price').text();
-      //  percent = $('#percent').text();
+  <!-- <script type="text/javascript">
+    // $(document).ready(function(){
+    //   $("#details").click(function(){
+    //     log ($('#id').val())
+    //     $.post("cat.php",
+    //     {
+    //       id: $('#id').val()
 
-      alert(link);
-      alert(title);
-      alert(price);
-      alert(percent);
+    //     },
+    //     function(data,status){
+    //      window.open('cart.php');
+    //     });
+    //   });
+    // });
+
+    function them(id) {
+     alert(id);
+      //alert(title);
+
+      
 
       $.post('cart.php', {
-        'link': link,
-        'title': title,
-        'price': price,
-        'percent': percent
 
+        'id': id
+
+      }, function(data) {
+       // console.log(id);
+        // data=JSON.parse(data);
+        location.reload()
+         window.open('cart.php')
       })
-      window.open('cart.php');
-    };
-  </script>
+    }
+  </script> -->
 </body>
 
 </html>

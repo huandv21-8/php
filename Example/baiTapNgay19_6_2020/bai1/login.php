@@ -1,74 +1,95 @@
-<?php 
-if (isset($_COOKIE['status']) && $_COOKIE['status'] == 'success') {
-    header('Location: welcome.php');
+<?php
+require_once('manage.php');
+$acc = $pass = $option = '';
+$check = false;
+$userList[] = array();
+
+$sql = 'select * from user';
+$userList = select($sql);
+
+if (!empty($_POST)) {
+    if (isset($_POST['account'])) {
+        $acc = $_POST['account'];
+    }
+    if (isset($_POST['pass'])) {
+        $pass = $_POST['pass'];
+    }
+
+    if ($acc != '' && $pass != '') {
+        # code...
+
+        foreach ($userList as $user) {
+            if ($acc == $user['account'] && $pass == $user['pass']) {
+                $check = true;
+            }
+        }
+
+        if ($check) {
+            setcookie('style', 'success', time() + 100, '/');
+            header('Location: admin.php');
+            die();
+        } else {
+            $option = '<p style="color:red;">User or password entered incorre</p>';
+        }
+    }
+}
+
+if (isset($_COOKIE['style']) && $_COOKIE['style'] == 'success') {
+    header('Location: admin.php');
     die();
 }
 
 
-if (!empty($_POST)) {
-	$CheckEmail = $CheckPassword = '';
-    if (isset($_POST['fullname'])) {
-        setcookie('fullname', $_POST['fullname'], time() + 300, '/');
-    }
-    if (isset($_POST['email'])) {
-        setcookie('email', $_POST['email'], time() + 300, '/');
-    }
-    if (isset($_POST['address'])) {
-        setcookie('address', $_POST['address'], time() + 300, '/');
-    }
-    if (isset($_POST['password'])) {
-        setcookie('password', $_POST['password'], time() + 300, '/');
-    }
-    if (isset($_POST['confirmation_pwd'])) {
-        setcookie('confirmation_pwd', $_POST['confirmation_pwd'], time() + 300, '/');
-    }
-    if (isset($_POST['CheckEmail']) && isset($_POST['CheckPassword'])) {
-        if (($_COOKIE['email'] == $_POST['CheckEmail']) && ($_COOKIE['password'] == $_POST['CheckPassword'])) {
-            setcookie('status', 'success', time() + 300, '/');
-            header('Location: welcome.php');
-            die();    
-	}
-}
-}
-
- ?>
-
+?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-	<title>Registation Form * Form Tutorial</title>
-	<!-- Latest compiled and minified CSS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-
-	<!-- jQuery library -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
-	<!-- Popper JS -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-
-	<!-- Latest compiled JavaScript -->
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <title>Log in</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 </head>
+
 <body>
-	<div class="container">
-		<div class="panel panel-primary">
-			<div class="panel-heading">
-				<h2 class="text-center">Login</h2>
-			</div>
-			<div class="panel-body">
-				<form method="post">
-					<div class="form-group">
-					  <label for="usr">Email :</label>
-					  <input required="true" type="email" class="form-control" id="usr" name="CheckEmail">
-					</div>
-					<div class="form-group">
-					  <label for="pwd">Password:</label>
-					  <input required="true" type="password" class="form-control" id="pwd" name="CheckPassword">
-					</div>
-					<button class="btn btn-success">Login</button>
-				</form>
-			</div>
-		</div>
-	</div>
+    <div class="container">
+        <button type="submit" class="btn btn-primary" style=" text-align: center;">Login</button>
+        <button type="submit" class="btn btn-primary" onclick="signup();">Signup </button></br>
+        <?= $option ?>
+        <div class="container" style="border: 1px solid red;">
+            <div class="container">
+
+                <form action="" class="was-validated" method="post">
+                    <div class="form-group">
+                        <label for="account">Account:</label>
+                        <input type="text" class="form-control" id="account" placeholder="Enter account" name="account" required>
+                        <div class="invalid-feedback">Please fill out this field.</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="pwd">Password:</label>
+                        <input type="password" class="form-control" id="pass" placeholder="Enter password" name="pass" required>
+                        <div class="invalid-feedback">Please fill out this field.</div>
+                    </div>
+                    <div class="form-group form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="checkbox" name="remember" required> Save login
+                            <div class="valid-feedback">Valid.</div>
+                            <div class="invalid-feedback">Check this checkbox to continue.</div>
+                        </label>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </form>
+            </div>
+        </div>
+    </div>
 </body>
+<script>
+    function signup() {
+        window.open("register.php")
+    }
+</script>
+
 </html>

@@ -15,7 +15,12 @@ use Illuminate\Support\Facades\Route;
 
 
 // url  này gọi đến cái hàm getdata trong file controller Manage.php
-Route::get('/GPT/a/{a}/b/{b}','Manage@getdata');
+//Route::get('/GPT/a/{a}/b/{b}','Manage@getdata');
+
+Route::get('/giathua/{n}','Manage@tinhgiaithua');
+
+//Route::get('/ptb2/{a}x2+{b}x+{c}','Manage@')
+
 
 // Route::get('/', function () {
 //     echo 'huandep trai';

@@ -1,7 +1,4 @@
-<?php
-// lấy dữ liệu từ hàm getdata chuyền sang.
-echo $data;
-?>
+
 
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
@@ -69,9 +66,13 @@ echo $data;
         </style>
     </head>
     <body>
+<!-- hiển thị dữ liệu từ controller sang view -->
+    {{$giathua}}
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">
+
+
                     @auth
                         <a href="{{ url('/home') }}">Home</a>
                     @else
