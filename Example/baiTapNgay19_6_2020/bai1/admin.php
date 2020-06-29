@@ -5,8 +5,8 @@ require_once('manage.php');
 //delete product
 $id = $tr = $sql = $s = '';
 if (!empty($_GET)) {
-	if (isset($_GET['id'])) {
-		$id = $_GET['id'];
+  if (isset($_GET['id'])) {
+    $id = $_GET['id'];
   }
 
   $xoa = 'DELETE FROM product WHERE id =' . $id;
@@ -23,7 +23,7 @@ foreach ($productList as $product) {
   $s .= '
   <div class="box-body" style="margin: 20px 20px 10px 10px ;border:1px solid red;">
     <h4 style="background-color:#f7f7f7; font-size: 18px; text-align: center; padding: 7px 10px; margin-top: 0;">
-      '.$product['title'].'
+      ' . $product['title'] . '
     </h4>
     <div class="media">
       <div class="media-left">
@@ -34,16 +34,16 @@ foreach ($productList as $product) {
       <div class="media-body" style="margin-left: 20px;">
         <div class="clearfix">
           <p class="pull-right">
-            <a href="#" onclick=\'window.open("admin.php?id='.$product['id'] .'","_self")\' class="btn btn-success btn-sm ad-click-event">
+            <a href="#" onclick=\'window.open("admin.php?id=' . $product['id'] . '","_self")\' class="btn btn-success btn-sm ad-click-event">
               Delete
             </a>
-            <a href="#" onclick=\'window.open("insertProduct.php?id='.$product['id'] .'","_self")\' class="btn btn-success btn-sm ad-click-event">Edit</a>
+            <a href="#" onclick=\'window.open("insertProduct.php?id=' . $product['id'] . '","_self")\' class="btn btn-success btn-sm ad-click-event">Edit</a>
           </p>
           <h4 style="margin-top: 0">' . $product['price'] . ' đ</h4>
 
           <p> Bootstrap 4 Admin Dashboard Template</p>
           <p style="margin-bottom: 0">
-            <i class="fa fa-shopping-cart margin-r5">giam gia: </i> '.$product['percent'].'%
+            <i class="fa fa-shopping-cart margin-r5">giam gia: </i> ' . $product['percent'] . '%
           </p>
         </div>
       </div>
@@ -84,21 +84,22 @@ foreach ($productList as $product) {
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="welcome.php">Home
+            <a class="nav-link" href="admin.php">Home
               <span class="sr-only">(current)</span>
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">About</a>
           </li>
+
           <li class="nav-item">
-            <a class="nav-link" href="#">Login</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Contact</a>
+            <a class="nav-link" href="contartAdmin.php">Contact</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="insertProduct.php">Add product</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="logout.php">Logout</a>
           </li>
         </ul>
       </div>
@@ -114,7 +115,7 @@ foreach ($productList as $product) {
   <!-- Footer -->
   <footer class="py-5 bg-dark">
     <div class="container">
-      <p class="m-0 text-center text-white" >quan ly dien thoai</p>
+      <p class="m-0 text-center text-white">quan ly dien thoai</p>
     </div>
     <!-- /.container -->
   </footer>

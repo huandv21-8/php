@@ -173,43 +173,7 @@ foreach ($productList as $product) {
     <!-- /.container -->
   </footer>
 
-  <!-- Bootstrap core JavaScript -->
-  <!-- <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script> -->
 
-  <!-- <script type="text/javascript">
-    // $(document).ready(function(){
-    //   $("#details").click(function(){
-    //     log ($('#id').val())
-    //     $.post("cat.php",
-    //     {
-    //       id: $('#id').val()
-
-    //     },
-    //     function(data,status){
-    //      window.open('cart.php');
-    //     });
-    //   });
-    // });
-
-    function them(id) {
-     alert(id);
-      //alert(title);
-
-      
-
-      $.post('cart.php', {
-
-        'id': id
-
-      }, function(data) {
-       // console.log(id);
-        // data=JSON.parse(data);
-        location.reload()
-         window.open('cart.php')
-      })
-    }
-  </script> -->
 </body>
 
 </html>
